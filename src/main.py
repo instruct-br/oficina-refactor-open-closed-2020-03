@@ -4,8 +4,8 @@ import sys
 from pdfminer.high_level import extract_text
 
 
-def contains_python(text):
-    return 'python' in text
+def contains_python(text, keyword='python'):
+    return keyword in text
 
 
 def contains_number(text):
