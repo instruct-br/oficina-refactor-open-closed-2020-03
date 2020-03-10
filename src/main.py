@@ -4,7 +4,7 @@ import sys
 from pdfminer.high_level import extract_text
 
 
-def contains_python(text, keyword='python'):
+def contains_keyword(text, keyword):
     return keyword in text
 
 
@@ -19,7 +19,7 @@ def parse_local_cv(email):
 def main(emails):
     valid_mails = []
     for email in emails:
-        if not contains_python(parse_local_cv(email).lower()):
+        if not contains_keyword(parse_local_cv(email).lower(), 'python'):
             continue
         if not contains_number(parse_local_cv(email).lower()):
             continue
