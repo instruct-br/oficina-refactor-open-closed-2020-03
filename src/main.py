@@ -8,7 +8,7 @@ def contains_keyword(text, keyword):
     return keyword in text
 
 
-def contains_number(text, pattern=r"\(?\d+\)?\s*\d+\-*\d+"):
+def contains_pattern(text, pattern):
     return re.compile(pattern).search(text)
 
 
@@ -21,7 +21,7 @@ def main(emails):
     for email in emails:
         if not contains_keyword(parse_local_cv(email).lower(), 'python'):
             continue
-        if not contains_number(parse_local_cv(email).lower()):
+        if not contains_pattern(parse_local_cv(email).lower(), r"\(?\d+\)?\s*\d+\-*\d+"):
             continue
         valid_mails.append(email)
     return valid_mails
