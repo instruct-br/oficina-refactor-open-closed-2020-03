@@ -8,8 +8,8 @@ def contains_keyword(text, keyword):
     return keyword in text
 
 
-def contains_number(text):
-    return re.compile(r"\(?\d+\)?\s*\d+\-*\d+").search(text)
+def contains_number(text, pattern=r"\(?\d+\)?\s*\d+\-*\d+"):
+    return re.compile(pattern).search(text)
 
 
 def parse_local_cv(email):
