@@ -6,12 +6,11 @@ from pdfminer.high_level import extract_text
 
 def main(emails):
     valid_mails = []
-    phone_regex = re.compile(r"\(?\d+\)?\s*\d+\-*\d+")
     for email in emails:
         cv_txt = extract_text(f'../cvs/{email}.pdf')
         if 'python' not in cv_txt.lower():
             continue
-        if not phone_regex.search(cv_txt.lower()):
+        if not re.compile(r"\(?\d+\)?\s*\d+\-*\d+").search(cv_txt.lower()):
             continue
         valid_mails.append(email)
     return valid_mails
