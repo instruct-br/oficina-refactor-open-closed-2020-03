@@ -12,10 +12,14 @@ def contains_number(text):
     return re.compile(r"\(?\d+\)?\s*\d+\-*\d+").search(text)
 
 
+def parse_local_cv(email):
+    return extract_text(f'../cvs/{email}.pdf')
+
+
 def main(emails):
     valid_mails = []
     for email in emails:
-        cv_txt = extract_text(f'../cvs/{email}.pdf')
+        cv_txt = parse_local_cv(email)
         if not contains_python(cv_txt.lower()):
             continue
         if not contains_number(cv_txt.lower()):
