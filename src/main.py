@@ -19,10 +19,9 @@ def parse_local_cv(email):
 def main(emails):
     valid_mails = []
     for email in emails:
-        cv_txt = parse_local_cv(email)
-        if not contains_python(cv_txt.lower()):
+        if not contains_python(parse_local_cv(email).lower()):
             continue
-        if not contains_number(cv_txt.lower()):
+        if not contains_number(parse_local_cv(email).lower()):
             continue
         valid_mails.append(email)
     return valid_mails
