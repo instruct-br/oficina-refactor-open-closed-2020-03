@@ -4,11 +4,15 @@ import sys
 from pdfminer.high_level import extract_text
 
 
+def contains_python(text):
+    return 'python' in text
+
+
 def main(emails):
     valid_mails = []
     for email in emails:
         cv_txt = extract_text(f'../cvs/{email}.pdf')
-        if 'python' not in cv_txt.lower():
+        if not contains_python(cv_txt.lower()):
             continue
         if not re.compile(r"\(?\d+\)?\s*\d+\-*\d+").search(cv_txt.lower()):
             continue
