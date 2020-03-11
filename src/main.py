@@ -25,18 +25,18 @@ def parse_local_cv(email):
     return extract_text(f'../cvs/{email}.pdf')
 
 
-def is_valid(text):
-    validators = (
-        PatternValidator('python'),
-        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+")
-    )
+def is_valid(text, validators):
     return all(validator.is_valid(text) for validator in validators)
 
 
 def main(emails):
     valid_mails = []
+    validators = (
+        PatternValidator('python'),
+        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+")
+    )
     for email in emails:
-        if not is_valid(parse_local_cv(email).lower()):
+        if not is_valid(parse_local_cv(email).lower(), validators):
             continue
         valid_mails.append(email)
     return valid_mails
