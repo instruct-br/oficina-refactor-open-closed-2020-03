@@ -29,14 +29,6 @@ class PatternValidator(Validator):
         return bool(re.compile(self._pattern).search(text))
 
 
-def contains_keyword(text, keyword):
-    return keyword in text
-
-
-def contains_pattern(text, pattern):
-    return re.compile(pattern).search(text)
-
-
 def parse_local_cv(email):
     return extract_text(f'../cvs/{email}.pdf')
 
