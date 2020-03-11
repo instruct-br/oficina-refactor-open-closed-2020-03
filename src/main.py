@@ -36,15 +36,25 @@ def main(emails, validators):
     ]
 
 
-PYTHON_VALIDATORS = (
-    PatternValidator('python'),
-    PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+"),
-)
+VALIDATORS = {
+    'python': (
+        PatternValidator('python'),
+        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+"),
+    )
+}
+
+
+def available_validators():
+    return ','.join(VALIDATORS.keys())
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        mails = main(sys.argv[1:], PYTHON_VALIDATORS)
+    if len(sys.argv) > 2:
+        validation = sys.argv[1]
+        if validation not in VALIDATORS:
+            print(f"Validação desconhecida. Validações disponíveis: {available_validators()}")
+            sys.exit(1)
+        mails = main(sys.argv[2:], VALIDATORS[validation])
         print('\n'.join(mails))
     else:
         print("Envie pelo menos 1 email na saída")
