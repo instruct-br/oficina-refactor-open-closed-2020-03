@@ -13,14 +13,6 @@ class Validator():
         raise NotImplementedError()
 
 
-class KeywordValidator(Validator):
-    def __init__(self, keyword):
-        self._keyword = keyword
-
-    def is_valid(self, text):
-        return self._keyword in text
-
-
 class PatternValidator(Validator):
     def __init__(self, pattern):
         self._pattern = pattern
