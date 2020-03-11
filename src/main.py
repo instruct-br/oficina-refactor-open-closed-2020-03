@@ -36,7 +36,7 @@ def parse_local_cv(email):
 def main(emails):
     valid_mails = []
     for email in emails:
-        if not KeywordValidator('python').is_valid(parse_local_cv(email).lower()):
+        if not PatternValidator('python').is_valid(parse_local_cv(email).lower()):
             continue
         if not PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+").is_valid(parse_local_cv(email).lower()):
             continue
