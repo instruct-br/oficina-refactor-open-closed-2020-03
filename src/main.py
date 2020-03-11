@@ -1,7 +1,32 @@
 import re
 import sys
+from abc import ABCMeta, abstractmethod
 
 from pdfminer.high_level import extract_text
+
+
+class Validator():
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def is_valid(self, text):
+        raise NotImplementedError()
+
+
+class KeywordValidator(Validator):
+    def __init__(self, keyword):
+        self._keyword = keyword
+
+    def is_valid(self, text):
+        return self._keyword in text
+
+
+class PatternValidator(Validator):
+    def __init__(self, pattern):
+        self._pattern = pattern
+
+    def is_valid(self, text):
+        return bool(re.compile(self._pattern).search(text))
 
 
 def contains_keyword(text, keyword):
@@ -19,9 +44,9 @@ def parse_local_cv(email):
 def main(emails):
     valid_mails = []
     for email in emails:
-        if not contains_keyword(parse_local_cv(email).lower(), 'python'):
+        if not KeywordValidator('python').is_valid(parse_local_cv(email).lower()):
             continue
-        if not contains_pattern(parse_local_cv(email).lower(), r"\(?\d+\)?\s*\d+\-*\d+"):
+        if not PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+").is_valid(parse_local_cv(email).lower()):
             continue
         valid_mails.append(email)
     return valid_mails
