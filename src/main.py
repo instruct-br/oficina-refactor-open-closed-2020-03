@@ -29,12 +29,8 @@ def is_valid(text, validators):
     return all(validator.is_valid(text) for validator in validators)
 
 
-def main(emails):
+def main(emails, validators):
     valid_mails = []
-    validators = (
-        PatternValidator('python'),
-        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+")
-    )
     for email in emails:
         if not is_valid(parse_local_cv(email).lower(), validators):
             continue
@@ -42,9 +38,15 @@ def main(emails):
     return valid_mails
 
 
+PYTHON_VALIDATORS = (
+    PatternValidator('python'),
+    PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+"),
+)
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        mails = main(sys.argv[1:])
+        mails = main(sys.argv[1:], PYTHON_VALIDATORS)
         print('\n'.join(mails))
     else:
         print("Envie pelo menos 1 email na saída")

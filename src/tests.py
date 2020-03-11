@@ -1,6 +1,6 @@
 import unittest
 
-from main import main
+from main import main, PYTHON_VALIDATORS
 
 
 class TestMain(unittest.TestCase):
@@ -10,7 +10,7 @@ class TestMain(unittest.TestCase):
         busca nos currículos telefone e a palavra chave python
         e retorna a lista de curriculos válidos
         """
-        output = main(['ddignan1', 'ngillard3'])
+        output = main(['ddignan1', 'ngillard3'], PYTHON_VALIDATORS)
         self.assertIn('ddignan1', output)
         self.assertIn('ngillard3', output)
 
@@ -18,14 +18,14 @@ class TestMain(unittest.TestCase):
         """
         Teste se a função main rejeita currículos sem telefone
         """
-        output = main(['clilbourne0'])
+        output = main(['clilbourne0'], PYTHON_VALIDATORS)
         self.assertNotIn('clilbourne0', output)
 
     def test_fail_python(self):
         """
         Teste se a função main rejeita currículos sem telefone
         """
-        output = main(['ckneesha2', 'gsatterly4'])
+        output = main(['ckneesha2', 'gsatterly4'], PYTHON_VALIDATORS)
         self.assertNotIn('ckneesha2', output)
         self.assertNotIn('gsatterly4', output)
 
