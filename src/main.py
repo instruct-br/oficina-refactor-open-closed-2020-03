@@ -26,10 +26,11 @@ def parse_local_cv(email):
 
 
 def is_valid(text):
-    return (
-        PatternValidator('python').is_valid(text) and
-        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+").is_valid(text)
+    validators = (
+        PatternValidator('python'),
+        PatternValidator(r"\(?\d+\)?\s*\d+\-*\d+")
     )
+    return all(validator.is_valid(text) for validator in validators)
 
 
 def main(emails):
