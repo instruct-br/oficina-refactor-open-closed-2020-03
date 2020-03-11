@@ -30,12 +30,10 @@ def is_valid(text, validators):
 
 
 def main(emails, validators):
-    valid_mails = []
-    for email in emails:
-        if not is_valid(parse_local_cv(email).lower(), validators):
-            continue
-        valid_mails.append(email)
-    return valid_mails
+    return [
+        email for email in emails
+        if is_valid(parse_local_cv(email).lower(), validators)
+    ]
 
 
 PYTHON_VALIDATORS = (
