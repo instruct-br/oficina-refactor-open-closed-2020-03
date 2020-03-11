@@ -38,7 +38,7 @@ http://host/curriculos/<email-do-candidato>.pdf
 A _Unstrict_ recebeu alguns currículos de menores de idade, essas pessoas
 devem ser descartadas.
 
-A empresa também abriu uma vaga de desenvolvimento Elixir.
+A empresa também abriu uma vaga de desenvolvimento Javascript.
 
 E não é mais necessário ter um telefone para contato, apenas o e-mail
 é o suficiente.
@@ -48,3 +48,24 @@ E não é mais necessário ter um telefone para contato, apenas o e-mail
 Não é possível adicionar esses novos comportamentos no código que existe
 sem alterá-lo. Refatore o código que existe para que isso seja possível,
 depois altere os comportamentos descritos.
+
+Consulte como é possível fazer isso na branch `refactor` deste repositório
+
+### Bônus
+
+Faça com que a validação seja extraída para um arquivo de configuração
+JSON. E troque a entrada do programa para receber um desses JSON, seguido
+da lista de e-mails.
+
+## E ainda mais requisitos
+
+Com o programa do jeito que está, é possível baixar currículos de outras
+fontes? Dado um e-mail, tentar procurar o arquivo local e se não encontrar,
+consultar um endereço com o currículo (ex: https://unstrict.com.br/cvs/email.pdf) ?
+
+É possível suportar outros formatos de arquivo?
+
+### Mais desafios
+
+Refatore o código para que seja fácil adicionar os requisitos acima sem
+precisar mexer muito no código que existir.
