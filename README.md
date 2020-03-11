@@ -18,9 +18,7 @@ certo ganho de tempo no processo.
 
 O _Filtro de Curriculum Vitae_ faz o seguinte processamento:
 
-1. Baixa uma lista de currículos em PDF de um endereço na web com o formato:
-
-http://host/curriculos/<email-do-candidato>.pdf
+1. Lê currículos em PDF de uma pasta local da máquina
 
 2. Lê todo o texto do documento
 
